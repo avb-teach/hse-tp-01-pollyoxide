@@ -10,7 +10,7 @@ function recursion() {
   do  
     if [[ -f "$element" ]] 
     then
-      name=$(basename "$file")
+      name=$(basename "$element")
       cp "$element" "$result/$name"
     elif [[ -d "$element" ]]
     then
