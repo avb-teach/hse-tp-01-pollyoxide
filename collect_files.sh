@@ -7,7 +7,7 @@ function recursion() {
   local result="$2"
 
   for element in "$input"/* 
-  do
+  do  
     if [[ -f "$element" ]] 
     then
       name=$(basename "$file")
