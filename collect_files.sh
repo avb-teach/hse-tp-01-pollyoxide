@@ -1,4 +1,5 @@
 #!/bin/bash
+
 input_directory="$1"
 output_directory="$2"
 
@@ -11,7 +12,14 @@ function recursion() {
     if [[ -f "$element" ]] 
     then
       name=$(basename "$element")
-      cp "$element" "$result/$name"
+      changed_name="$name"
+      counter=1
+      while [[ -f "$result/$changed_name" ]]
+      do
+        changed_name="${name%.*}(${counter}).${name##*.}"  
+        ((counter++))
+      done
+      cp "$element" "$result/$changed_name"
     elif [[ -d "$element" ]]
     then
       recursion "$element" "$result"
@@ -20,7 +28,3 @@ function recursion() {
 }
 
 recursion "$input_directory" "$output_directory"
-
-
-
-
