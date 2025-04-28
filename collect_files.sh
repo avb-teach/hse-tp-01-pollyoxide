@@ -8,18 +8,11 @@ function recursion() {
   local result="$2"
 
   for element in "$input"/* 
-  do  
+  do
     if [[ -f "$element" ]] 
     then
       name=$(basename "$element")
-      changed_name="$name"
-      counter=1
-      while [[ -f "$result/$changed_name" ]]
-      do
-        changed_name="${name%.*}(${counter}).${name##*.}"  
-        ((counter++))
-      done
-      cp "$element" "$result/$changed_name"
+      cp "$element" "$result/$name"
     elif [[ -d "$element" ]]
     then
       recursion "$element" "$result"
